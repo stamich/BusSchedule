@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE hibernate-configuration PUBLIC "-//Hibernate/Hibernate Configuration DTD/EN"
+        "http://www.hibernate.org/xsd/hibernate-configuration">
+<hibernate-configuration>
+    <session-factory>
+        <property name="dialect">org.hibernate.dialect.PostgreSQL95Dialect</property>
+        <property name="connection.driver_class">org.postgresql.Driver</property>
+        <property name="connection.url">jdbc:postgresql://localhost:5432/database</property>
+        <property name="connection.username">myUsername</property>
+        <property name="connection.password">myPassword</property>
+
+        <property name="cache.provider_class">org.hibernate.cache.CacheException</property>
+
+        <property name="transaction.factory_class">org.hibernate.resource.transaction.backend.jdbc.internal.JdbcResourceLocalTransactionCoordinatorBuilderImpl</property>
+        <property name="current_session_context_class">thread</property>
+        <property name="hibernate.show_sql">false</property>
+    </session-factory>
+</hibernate-configuration>
