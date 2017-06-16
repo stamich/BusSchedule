@@ -1,7 +1,7 @@
 package pl.mzk.bielsko;
 
 /**
- * Created by michal on 16.06.17.
+ * Created by michal on 05.06.17.
  */
 
 public class Przystanki
@@ -11,6 +11,16 @@ public class Przystanki
     private String nazwa;
     private int numer_linii;
     private String kierunek;
+
+    private Linie linia;
+
+    public Linie getLinia() {
+        return linia;
+    }
+
+    public void setLinia(Linie linia) {
+        this.linia = linia;
+    }
 
     public int getId() {
         return id;

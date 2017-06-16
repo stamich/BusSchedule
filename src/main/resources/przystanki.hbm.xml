@@ -15,5 +15,6 @@
         <property name="numer_linii" column="numer_linii" type="integer"/>
         <property name="relacja" column="relacja" type="char"/>
         <property name="kierunek" column="kierunek" type="text"/>
+        <many-to-one name="linia" column="numer_linii" not-null="true"/>
     </class>
 </hibernate-mapping>

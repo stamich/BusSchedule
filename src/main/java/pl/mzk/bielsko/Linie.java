@@ -3,7 +3,7 @@ package pl.mzk.bielsko;
 import java.util.Set;
 
 /**
- * Created by michal on 16.06.17.
+ * Created by michal on 05.06.17.
  */
 
 public class Linie
@@ -12,16 +12,16 @@ public class Linie
     private int numer_lini;
     private String relacja;
     private String kierunek;
-    private Set<Linie> linia;
+    private Set<Przystanki> przystanek;
 
-    public Set<Linie> getLinia()
+    public Set<Przystanki> getPrzystanki()
     {
-        return linia;
+        return przystanek;
     }
 
-    public void setLinia(Set<Linie> linia)
+    public void setPrzystanki(Set<Przystanki> przystanki)
     {
-        this.linia = linia;
+        this.przystanek = przystanki;
     }
 
     public int getId()
