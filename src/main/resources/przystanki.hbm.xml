@@ -12,8 +12,7 @@
         </id>
         <property name="ulica" column="ulica" type="char"/>
         <property name="nazwa" column="nazwa" type="char"/>
-        <property name="numer_linii" column="numer_linii" type="integer"/>
-        <property name="relacja" column="relacja" type="char"/>
+        <property name="numerLini" column="numer_linii" type="integer"/>
         <property name="kierunek" column="kierunek" type="text"/>
         <many-to-one name="linia" column="numer_linii" not-null="true"/>
     </class>

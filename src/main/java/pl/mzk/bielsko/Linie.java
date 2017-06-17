@@ -9,7 +9,7 @@ import java.util.Set;
 public class Linie
 {
     private int id;
-    private int numer_lini;
+    private int numerLini;
     private String relacja;
     private String kierunek;
     private Set<Przystanki> przystanek;
@@ -34,14 +34,14 @@ public class Linie
         this.id = id;
     }
 
-    public int getNumer_lini()
+    public int getNumerLini()
     {
-        return numer_lini;
+        return numerLini;
     }
 
-    public void setNumer_lini(int numer_lini)
+    public void setNumerLini(int numerLini)
     {
-        this.numer_lini = numer_lini;
+        this.numerLini = numerLini;
     }
 
     public String getRelacja()

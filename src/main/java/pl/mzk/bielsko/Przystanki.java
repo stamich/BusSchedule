@@ -9,7 +9,7 @@ public class Przystanki
     private int id;
     private String ulica;
     private String nazwa;
-    private int numer_linii;
+    private int numerLini;
     private String kierunek;
 
     private Linie linia;
@@ -46,12 +46,12 @@ public class Przystanki
         this.nazwa = nazwa;
     }
 
-    public int getNumer_linii() {
-        return numer_linii;
+    public int getNumerLini() {
+        return numerLini;
     }
 
-    public void setNumer_linii(int numer_linii) {
-        this.numer_linii = numer_linii;
+    public void setNumerLini(int numerLini) {
+        this.numerLini = numerLini;
     }
 
     public String getKierunek() {

@@ -6,7 +6,6 @@ import org.hibernate.Transaction;
 import org.hibernate.cfg.Configuration;
 
 import java.util.HashSet;
-import java.util.List;
 import java.util.Set;
 
 /**
@@ -29,7 +28,7 @@ public class BusMain
         Transaction t = s.beginTransaction();
         Linie linia = new Linie();
         linia.setId(1);
-        linia.setNumer_lini(1);
+        linia.setNumerLini(1);
         linia.setRelacja("Osiedle Beskidzkie - Cygański Las");
         linia.setKierunek("Cygański Las");
         Set<Przystanki> zbior = new HashSet<Przystanki>();

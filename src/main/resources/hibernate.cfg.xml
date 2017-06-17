@@ -6,8 +6,8 @@
         <property name="dialect">org.hibernate.dialect.PostgreSQL95Dialect</property>
         <property name="connection.driver_class">org.postgresql.Driver</property>
         <property name="connection.url">jdbc:postgresql://localhost:5432/database</property>
-        <property name="connection.username">myUsername</property>
-        <property name="connection.password">myPassword</property>
+        <property name="connection.username">myUserName</property>
+        <property name="connection.password">mypassword</property>
 
         <property name="cache.provider_class">org.hibernate.cache.CacheException</property>
 
