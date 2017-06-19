@@ -6,11 +6,13 @@ import org.hibernate.Transaction;
 import org.hibernate.cfg.Configuration;
 
 import java.util.HashSet;
+import java.util.List;
 import java.util.Set;
 
 /**
  * Created by michal on 05.06.17.
  */
+
 public class BusMain
 {
     public static void main(String[] args)
@@ -19,15 +21,15 @@ public class BusMain
         SessionFactory factory = conf.buildSessionFactory();
         Session s = factory.openSession();
 
-        //List n = s.createQuery("SELECT n.numer_linii from Linie n").list();
-        //List r = s.createQuery("SELECT r.relacja from Linie r").list();
-        //List k = s.createQuery("SELECT k.kierunek from Linie k").list();
+        List n = s.createQuery("SELECT n.numerLini from Linie n").list();
+        List r = s.createQuery("SELECT r.relacja from Linie r").list();
+        List k = s.createQuery("SELECT k.kierunek from Linie k").list();
         //s.createQuery("DELETE Linie l WHERE l.id = 1 ").executeUpdate();
-        //System.out.println(n.size() + r.size() + k.size());
+        System.out.println(n.size() + r.size() + k.size());
 
         Transaction t = s.beginTransaction();
         Linie linia = new Linie();
-        linia.setId(1);
+        /*linia.setId(1);
         linia.setNumerLini(1);
         linia.setRelacja("Osiedle Beskidzkie - Cygański Las");
         linia.setKierunek("Cygański Las");
@@ -37,7 +39,7 @@ public class BusMain
         przystanki.setKierunek("Cygański Las");
         przystanki.setLinia(linia);
         zbior.add(przystanki);
-        linia.setPrzystanki(zbior);
+        linia.setPrzystanki(zbior);*/
 
         s.persist(linia);
         t.commit();

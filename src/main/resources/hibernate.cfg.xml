@@ -11,7 +11,7 @@
 
         <property name="cache.provider_class">org.hibernate.cache.CacheException</property>
 
-        <property name="transaction.factory_class">org.hibernate.resource.transaction.backend.jdbc.internal.JdbcResourceLocalTransactionCoordinatorBuilderImpl</property>
+        <property name="transaction.factory_class">org.hibernate.transaction.JDBCTransactionFactory</property>
         <property name="current_session_context_class">thread</property>
         <property name="hibernate.show_sql">false</property>
     </session-factory>

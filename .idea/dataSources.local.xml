@@ -10,5 +10,10 @@
       <user-name>myUserName</user-name>
       <introspection-schemas>postgres:public</introspection-schemas>
     </data-source>
+    <data-source name="hibernate.cfg.xml/Hibernate" uuid="5ec7f615-26d3-4a6c-a459-0630af3e018b">
+      <database-info product="" version="" jdbc-version="" driver-name="" driver-version="" />
+      <first-sync>true</first-sync>
+      <user-name>michal</user-name>
+    </data-source>
   </component>
 </project>
