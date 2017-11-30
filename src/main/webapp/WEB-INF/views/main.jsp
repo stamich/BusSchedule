@@ -1,4 +1,3 @@
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%--
   Created by IntelliJ IDEA.
   User: michal
@@ -7,6 +6,7 @@
   To change this template use File | Settings | File Templates.
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <html>
 <head>
     <link href="<c:url value="/resources/theme1/css/style.css" />" rel="stylesheet">
@@ -18,9 +18,10 @@
 
 <h2>Wybierz sposób wyszukiwania:</h2>
 
-<h3>Linie</h3>
-
-<h3>Przystanki</h3>
+<h3>
+<a href=" <c:url value="lines" /> ">Linie</a>
+<a href=" <c:url value="stops" /> ">Przystanki</a>
+</h3>
 
 </body>
 </html>

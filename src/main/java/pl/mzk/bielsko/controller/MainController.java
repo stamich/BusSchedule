@@ -9,7 +9,6 @@ public class MainController {
 
     @RequestMapping(value = "/", method = RequestMethod.GET)
     public String mainView(){
-
         return "main";
     }
 }
