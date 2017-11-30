@@ -9,7 +9,7 @@ import java.util.Set;
 
 @Entity
 @Table(name = "przystanki")
-public class Stops
+public class Stop
 {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -29,7 +29,7 @@ public class Stops
     private String direction;
 
 
-    private Set<Lines> lines;
+    private Set<Line> lines;
 
     public int getId() {
         return id;
@@ -71,11 +71,11 @@ public class Stops
         this.direction = direction;
     }
 
-    public Set<Lines> getLines() {
+    public Set<Line> getLines() {
         return lines;
     }
 
-    public void setLines(Set<Lines> lines) {
+    public void setLines(Set<Line> lines) {
         this.lines = lines;
     }
 
@@ -84,9 +84,9 @@ public class Stops
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
 
-        Stops stops = (Stops) o;
+        Stop stop = (Stop) o;
 
-        return id == stops.id;
+        return id == stop.id;
     }
 
     @Override
@@ -96,7 +96,7 @@ public class Stops
 
     @Override
     public String toString() {
-        return "Stops{" +
+        return "Stop{" +
                 "id=" + id +
                 ", street='" + street + '\'' +
                 ", stopName='" + stopName + '\'' +
