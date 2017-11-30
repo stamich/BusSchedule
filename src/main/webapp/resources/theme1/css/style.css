@@ -1,0 +1,19 @@
+p {column-count: 2; column-gap: 3em; line-height: 1.4em;}
+h1{text-align: left}
+h2{text-align: left}
+h3{text-align: left}
+
+h1{font-size: 55px}
+h2{font-size: 35px}
+h3{font-size: 25px}
+h4{font-size: 20px}
+
+body {font-family: Arial, sans-serif; background-color: lightgray; padding: 10px; margin: 100px}
+h1 {color: blue}
+h2 {color: cornflowerblue}
+h3 {color: linen}
+h4 {color: black}
+
+a:visited{
+    color:blue;
+}

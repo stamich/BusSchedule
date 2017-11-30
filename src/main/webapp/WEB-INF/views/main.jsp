@@ -1,3 +1,4 @@
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%--
   Created by IntelliJ IDEA.
   User: michal
@@ -8,6 +9,7 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <html>
 <head>
+    <link href="<c:url value="/resources/theme1/css/style.css" />" rel="stylesheet">
     <title>Rozkład jazdy</title>
 </head>
 <body>
@@ -16,9 +18,9 @@
 
 <h2>Wybierz sposób wyszukiwania:</h2>
 
-<h2>Linie</h2>
+<h3>Linie</h3>
 
-<h2>Przystanki</h2>
+<h3>Przystanki</h3>
 
 </body>
 </html>

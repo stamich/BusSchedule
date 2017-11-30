@@ -2,6 +2,7 @@ package pl.mzk.bielsko.model;
 
 import javax.persistence.*;
 import java.time.LocalDate;
+import java.util.HashSet;
 import java.util.Set;
 
 /**
@@ -14,7 +15,7 @@ public class Line
 {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "id", nullable = false, updatable = false)
+    @Column(name = "id_linii", nullable = false, updatable = false)
     private int lineId;
 
     @Column(name = "numer_linii", nullable = false)
@@ -32,8 +33,8 @@ public class Line
     @Column(name = "wazny_do", nullable = false)
     private LocalDate validTo;
 
-
-    private Set<Stop> stops;
+    @ManyToMany(mappedBy = "lines")
+    private Set<Stop> stops = new HashSet<>();
 
     public int getLineId() {
         return lineId;

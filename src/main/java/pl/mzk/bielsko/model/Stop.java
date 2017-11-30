@@ -1,6 +1,8 @@
 package pl.mzk.bielsko.model;
 
 import javax.persistence.*;
+import java.time.LocalTime;
+import java.util.HashSet;
 import java.util.Set;
 
 /**
@@ -13,24 +15,28 @@ public class Stop
 {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "id", nullable = false, updatable = false)
+    @Column(name = "numer_przystanku", nullable = false, updatable = false)
     private int stopId;
 
-    @Column(name = "ulica")
+    @Column(name = "ulica", nullable = false)
     private String street;
 
-    @Column(name = "nazwa_przystanku")
+    @Column(name = "nazwa_przystanku", nullable = false)
     private String stopName;
 
-    @Column(name = "numer_linii")
-    private int lineNumber;
+    @Column(name = "numer_linii", nullable = false)
+    private String lineNumber;
 
-    @Column(name = "kierunek")
+    @Column(name = "kierunek", nullable = false)
     private String direction;
 
+    @Column(name = "godzina_odjazdu", nullable = false)
+    private LocalTime departTime;
 
-    private Set<Line> lines;
-
+    @ManyToMany(cascade = { CascadeType.ALL}, fetch = FetchType.LAZY)
+    @JoinTable(name = "przystanek_linia", joinColumns = { @JoinColumn(name = "numer_przystanku") },
+            inverseJoinColumns = { @JoinColumn(name = "id_linii") })
+    private Set<Line> lines = new HashSet<>();
 
     public int getStopId() {
         return stopId;
@@ -56,11 +62,11 @@ public class Stop
         this.stopName = stopName;
     }
 
-    public int getLineNumber() {
+    public String getLineNumber() {
         return lineNumber;
     }
 
-    public void setLineNumber(int lineNumber) {
+    public void setLineNumber(String lineNumber) {
         this.lineNumber = lineNumber;
     }
 
@@ -70,6 +76,14 @@ public class Stop
 
     public void setDirection(String direction) {
         this.direction = direction;
+    }
+
+    public LocalTime getDepartTime() {
+        return departTime;
+    }
+
+    public void setDepartTime(LocalTime departTime) {
+        this.departTime = departTime;
     }
 
     public Set<Line> getLines() {
@@ -101,8 +115,9 @@ public class Stop
                 "stopId=" + stopId +
                 ", street='" + street + '\'' +
                 ", stopName='" + stopName + '\'' +
-                ", lineNumber=" + lineNumber +
+                ", lineNumber='" + lineNumber + '\'' +
                 ", direction='" + direction + '\'' +
+                ", departTime=" + departTime +
                 ", lines=" + lines +
                 '}';
     }
