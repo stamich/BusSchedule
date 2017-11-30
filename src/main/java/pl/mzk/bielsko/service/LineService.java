@@ -8,8 +8,8 @@ public interface LineService {
 
     public void createLine(Line line);
     public void updateLine(Line line);
-    public Line editLine(int id);
-    public void deleteLine(int id);
-    public Line findLine(int id);
+    public Line editLine(int lineId);
+    public void deleteLine(int lineId);
+    public Line findLine(int lineId);
     public List<Line> getAllLines();
 }

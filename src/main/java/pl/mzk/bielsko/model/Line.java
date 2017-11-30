@@ -1,6 +1,7 @@
 package pl.mzk.bielsko.model;
 
 import javax.persistence.*;
+import java.time.LocalDate;
 import java.util.Set;
 
 /**
@@ -8,39 +9,45 @@ import java.util.Set;
  */
 
 @Entity
-@Table(name = "linie")
+@Table(name = "linia")
 public class Line
 {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id", nullable = false, updatable = false)
-    private int id;
+    private int lineId;
 
-    @Column(name = "numer_linii")
-    private int lineNumber;
+    @Column(name = "numer_linii", nullable = false)
+    private String lineNumber;
 
-    @Column(name = "relacja")
+    @Column(name = "relacja", nullable = false)
     private String relation;
 
-    @Column(name = "kierunek")
+    @Column(name = "kierunek", nullable = false)
     private String direction;
+
+    @Column(name = "wazny_od", nullable = false)
+    private LocalDate validFrom;
+
+    @Column(name = "wazny_do", nullable = false)
+    private LocalDate validTo;
 
 
     private Set<Stop> stops;
 
-    public int getId() {
-        return id;
+    public int getLineId() {
+        return lineId;
     }
 
-    public void setId(int id) {
-        this.id = id;
+    public void setLineId(int lineId) {
+        this.lineId = lineId;
     }
 
-    public int getLineNumber() {
+    public String getLineNumber() {
         return lineNumber;
     }
 
-    public void setLineNumber(int lineNumber) {
+    public void setLineNumber(String lineNumber) {
         this.lineNumber = lineNumber;
     }
 
@@ -60,6 +67,22 @@ public class Line
         this.direction = direction;
     }
 
+    public LocalDate getValidFrom() {
+        return validFrom;
+    }
+
+    public void setValidFrom(LocalDate validFrom) {
+        this.validFrom = validFrom;
+    }
+
+    public LocalDate getValidTo() {
+        return validTo;
+    }
+
+    public void setValidTo(LocalDate validTo) {
+        this.validTo = validTo;
+    }
+
     public Set<Stop> getStops() {
         return stops;
     }
@@ -75,21 +98,26 @@ public class Line
 
         Line line = (Line) o;
 
-        return id == line.id;
+        if (lineId != line.lineId) return false;
+        return lineNumber.equals(line.lineNumber);
     }
 
     @Override
     public int hashCode() {
-        return id;
+        int result = lineId;
+        result = 31 * result + lineNumber.hashCode();
+        return result;
     }
 
     @Override
     public String toString() {
         return "Line{" +
-                "id=" + id +
-                ", lineNumber=" + lineNumber +
+                "lineId=" + lineId +
+                ", lineNumber='" + lineNumber + '\'' +
                 ", relation='" + relation + '\'' +
                 ", direction='" + direction + '\'' +
+                ", validFrom=" + validFrom +
+                ", validTo=" + validTo +
                 ", stops=" + stops +
                 '}';
     }

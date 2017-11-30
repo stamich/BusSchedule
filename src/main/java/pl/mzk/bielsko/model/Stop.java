@@ -8,13 +8,13 @@ import java.util.Set;
  */
 
 @Entity
-@Table(name = "przystanki")
+@Table(name = "przystanek")
 public class Stop
 {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id", nullable = false, updatable = false)
-    private int id;
+    private int stopId;
 
     @Column(name = "ulica")
     private String street;
@@ -31,12 +31,13 @@ public class Stop
 
     private Set<Line> lines;
 
-    public int getId() {
-        return id;
+
+    public int getStopId() {
+        return stopId;
     }
 
-    public void setId(int id) {
-        this.id = id;
+    public void setStopId(int stopId) {
+        this.stopId = stopId;
     }
 
     public String getStreet() {
@@ -86,18 +87,18 @@ public class Stop
 
         Stop stop = (Stop) o;
 
-        return id == stop.id;
+        return stopId == stop.stopId;
     }
 
     @Override
     public int hashCode() {
-        return id;
+        return stopId;
     }
 
     @Override
     public String toString() {
         return "Stop{" +
-                "id=" + id +
+                "stopId=" + stopId +
                 ", street='" + street + '\'' +
                 ", stopName='" + stopName + '\'' +
                 ", lineNumber=" + lineNumber +
