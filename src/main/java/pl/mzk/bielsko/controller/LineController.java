@@ -24,36 +24,31 @@ public class LineController {
 
     @RequestMapping(value = "/editLine/{id}", method = RequestMethod.GET)
     public String edit(@PathVariable("id") int lineId, Map<String,Object> map){
-        //Stop stop = stopService.findStop(stopId);
-        Line line =lineService.findLine(lineId);
+        Line line = lineService.findLine(lineId);
         map.put("line", line);
         return "editLine";
     }
 
     @RequestMapping(value = "/update", method = RequestMethod.POST)
     public String update(Line line, Map<String,Object> map){
-        //stopService.updateStop(stop);
         lineService.updateLine(line);
         return "redirect:lineDetails" + line.getLineId(); //zabezpiecza przed podwojnym kliknieciem
     }
 
     @RequestMapping(value = "/delete/{id}", method = RequestMethod.GET)
     public String delete(@PathVariable("id") int lineId, Map<String,Object> map){
-        //stopService.deleteStop(stopId);
         lineService.deleteLine(lineId);
         return "redirect:lines";
     }
 
     @RequestMapping(value = "/register", method = RequestMethod.GET)
     public String register(Map<String,Object> map){
-        //map.put("line", new Stop());
         map.put("line", new Line());
         return "createLine";
     }
 
     @RequestMapping(value = "/create", method = RequestMethod.POST)
     public String create(Line line, Map<String,Object> map){
-        //stopService.createStop(line);
         lineService.createLine(line);
         return "redirect:lineDetails" + line.getLineId(); //zabezpiecza przed podwojnym kliknieciem
     }
