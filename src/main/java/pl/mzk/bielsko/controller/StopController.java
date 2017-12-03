@@ -41,7 +41,7 @@ public class StopController {
         return "redirect:stops";
     }
 
-    @RequestMapping(value = "/register", method = RequestMethod.GET)
+    @RequestMapping(value = "/createStop", method = RequestMethod.GET)
     public String register(Map<String,Object> map){
         map.put("stop", new Stop());
         return "createStop";

@@ -41,7 +41,7 @@ public class LineController {
         return "redirect:lines";
     }
 
-    @RequestMapping(value = "/register", method = RequestMethod.GET)
+    @RequestMapping(value = "/createLine", method = RequestMethod.GET)
     public String register(Map<String,Object> map){
         map.put("line", new Line());
         return "createLine";
