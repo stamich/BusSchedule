@@ -38,6 +38,23 @@
           <element id="library" level="project" name="Maven: javax.servlet:javax.servlet-api:3.1.0" />
           <element id="library" level="project" name="Maven: javax.servlet.jsp:javax.servlet.jsp-api:2.3.1" />
           <element id="library" level="project" name="Maven: javax.servlet:jstl:1.2" />
+          <element id="library" level="project" name="Maven: org.apache.tiles:tiles-jsp:3.0.8" />
+          <element id="library" level="project" name="Maven: org.apache.tiles:tiles-template:3.0.8" />
+          <element id="library" level="project" name="Maven: org.apache.tiles:tiles-autotag-core-runtime:1.2" />
+          <element id="library" level="project" name="Maven: org.slf4j:slf4j-api:1.7.6" />
+          <element id="library" level="project" name="Maven: org.apache.tiles:tiles-request-jsp:1.0.7" />
+          <element id="library" level="project" name="Maven: org.apache.tiles:tiles-core:3.0.8" />
+          <element id="library" level="project" name="Maven: commons-digester:commons-digester:2.0" />
+          <element id="library" level="project" name="Maven: commons-beanutils:commons-beanutils:1.8.0" />
+          <element id="library" level="project" name="Maven: org.slf4j:jcl-over-slf4j:1.7.6" />
+          <element id="library" level="project" name="Maven: org.apache.tiles:tiles-api:3.0.8" />
+          <element id="library" level="project" name="Maven: org.apache.tiles:tiles-request-api:1.0.7" />
+          <element id="library" level="project" name="Maven: org.apache.tiles:tiles-servlet:3.0.8" />
+          <element id="library" level="project" name="Maven: org.apache.tiles:tiles-request-servlet:1.0.7" />
+          <element id="library" level="project" name="Maven: org.thymeleaf:thymeleaf-spring4:3.0.9.RELEASE" />
+          <element id="library" level="project" name="Maven: org.thymeleaf:thymeleaf:3.0.9.RELEASE" />
+          <element id="library" level="project" name="Maven: org.attoparser:attoparser:2.0.4.RELEASE" />
+          <element id="library" level="project" name="Maven: org.unbescape:unbescape:1.1.5.RELEASE" />
           <element id="library" level="project" name="Maven: org.apache.logging.log4j:log4j-core:2.9.1" />
           <element id="library" level="project" name="Maven: org.apache.logging.log4j:log4j-api:2.9.1" />
         </element>

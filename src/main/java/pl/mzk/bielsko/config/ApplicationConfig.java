@@ -40,7 +40,6 @@ public class ApplicationConfig extends WebMvcConfigurerAdapter {
     public void addResourceHandlers(ResourceHandlerRegistry registry) {
         registry.addResourceHandler("/resources/theme1/css/**").addResourceLocations("/resources/theme1/css/");
         registry.addResourceHandler("/resources/theme1/js/**").addResourceLocations("/resources/theme1/js/");
-        //registry.addResourceHandler("/resources/theme1/tiles/**").addResourceLocations("/resources/theme1/tiles/");
     }
 
     @Override

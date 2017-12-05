@@ -13,7 +13,7 @@
 <head>
     <link href="<c:url value="/resources/theme1/css/style.css" />" rel="stylesheet">
 
-    <title>Create Line</title>
+    <title>Dodaj linie</title>
 </head>
 <body>
     <c:url var="action" value='lineDetails' ></c:url>

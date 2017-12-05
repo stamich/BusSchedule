@@ -11,7 +11,9 @@
 <%@ taglib prefix="spring" uri="http://www.springframework.org/tags" %>
 <html>
 <head>
-    <title>Title</title>
+    <link href="<c:url value="/resources/theme1/css/style.css" />" rel="stylesheet">
+
+    <title>Edytuj przystanki</title>
 </head>
 <body>
     <spring:url value="stop" var="stop" />

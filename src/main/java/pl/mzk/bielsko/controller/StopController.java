@@ -29,14 +29,14 @@ public class StopController {
         return "editStop";
     }
 
-    @RequestMapping(value = "/update", method = RequestMethod.POST)
+    @RequestMapping(value = "/updateStop", method = RequestMethod.POST)
     public String update(Stop stop, Map<String,Object> map){
         stopService.updateStop(stop);
         return "redirect:stopDetails" + stop.getStopId(); //zabezpiecza przed podwójnym kliknięciem
     }
 
-    @RequestMapping(value = "/delete/{id}", method = RequestMethod.GET)
-    public String delete(@PathVariable("id") int stopId, Map<String,Object> map){
+    @RequestMapping(value = "/deleteStop/{stopId}", method = RequestMethod.GET)
+    public String delete(@PathVariable("stopId") int stopId, Map<String,Object> map){
         stopService.deleteStop(stopId);
         return "redirect:stops";
     }
@@ -47,14 +47,14 @@ public class StopController {
         return "createStop";
     }
 
-    @RequestMapping(value = "/create", method = RequestMethod.POST)
+    @RequestMapping(value = "/createStop", method = RequestMethod.POST)
     public String create(Stop stop, Map<String,Object> map){
         stopService.createStop(stop);
         return "redirect:stopDetails" + stop.getStopId(); //zabezpiecza przed podwójnym kliknięciem
     }
 
-    @RequestMapping(value = "/details/{id}", method = RequestMethod.GET)
-    public String details(@PathVariable("id") int stopId, Map<String,Object> map){
+    @RequestMapping(value = "/details/{stopId}", method = RequestMethod.GET)
+    public String details(@PathVariable("stopId") int stopId, Map<String,Object> map){
         Stop stop = stopService.findStop(stopId);
         map.put("stopId", stop.getStopId());
         map.put("street", stop.getStreet());

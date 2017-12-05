@@ -29,14 +29,14 @@ public class LineController {
         return "editLine";
     }
 
-    @RequestMapping(value = "/update", method = RequestMethod.POST)
+    @RequestMapping(value = "/updateLine", method = RequestMethod.POST)
     public String update(Line line, Map<String,Object> map){
         lineService.updateLine(line);
         return "redirect:lineDetails" + line.getLineId(); //zabezpiecza przed podwojnym kliknieciem
     }
 
-    @RequestMapping(value = "/delete/{id}", method = RequestMethod.GET)
-    public String delete(@PathVariable("id") int lineId, Map<String,Object> map){
+    @RequestMapping(value = "/deleteLine/{lineId}", method = RequestMethod.GET)
+    public String delete(@PathVariable("lineId") int lineId, Map<String,Object> map){
         lineService.deleteLine(lineId);
         return "redirect:lines";
     }
@@ -47,14 +47,14 @@ public class LineController {
         return "createLine";
     }
 
-    @RequestMapping(value = "/create", method = RequestMethod.POST)
+    @RequestMapping(value = "/createLine", method = RequestMethod.POST)
     public String create(Line line, Map<String,Object> map){
         lineService.createLine(line);
         return "redirect:lineDetails" + line.getLineId(); //zabezpiecza przed podwojnym kliknieciem
     }
 
-    @RequestMapping(value = "/details/{id}", method = RequestMethod.GET)
-    public String details(@PathVariable("id") int lineId, Map<String,Object> map){
+    @RequestMapping(value = "/details/{lineId}", method = RequestMethod.GET)
+    public String details(@PathVariable("lineId") int lineId, Map<String,Object> map){
         Line line = lineService.findLine(lineId);
         map.put("lineId", line.getLineId());
         map.put("lineNumber", line.getLineNumber());

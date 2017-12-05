@@ -10,7 +10,8 @@
 <html>
 <head>
     <link href="<c:url value="/resources/theme1/css/style.css" />" rel="stylesheet">
-    <title>Title</title>
+
+    <title>Przystanki</title>
 </head>
 <body>
 <div id="content">

@@ -34,8 +34,7 @@ public class Stop
     private LocalTime departTime;
 
     @ManyToMany(cascade = { CascadeType.ALL }, fetch = FetchType.LAZY)
-    @JoinTable(name = "przystanek_linia", joinColumns = { @JoinColumn(name = "numer_przystanku") },
-            inverseJoinColumns = { @JoinColumn(name = "id_linii") })
+    @JoinTable(name = "przystanek_linia", joinColumns = { @JoinColumn(name = "numer_przystanku") }, inverseJoinColumns = { @JoinColumn(name = "id_linii") })
     private Set<Line> lines = new HashSet<>();
 
     public int getStopId() {

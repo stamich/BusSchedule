@@ -13,7 +13,7 @@
 <head>
     <link href="<c:url value="/resources/theme1/css/style.css" />" rel="stylesheet">
 
-    <title>Create Stop</title>
+    <title>Dodaj przystanek</title>
 </head>
 <body>
     <c:url var="action" value='stopDetails' ></c:url>

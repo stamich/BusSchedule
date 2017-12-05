@@ -13,7 +13,7 @@
 <head>
     <link href="<c:url value="/resources/theme1/css/style.css" />" rel="stylesheet">
 
-    <title>Edit Line</title>
+    <title>Edytuj linie</title>
 </head>
 <body>
 <spring:url value="lines" var="lines" />

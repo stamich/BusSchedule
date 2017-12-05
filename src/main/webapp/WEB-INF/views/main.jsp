@@ -10,6 +10,7 @@
 <html>
 <head>
     <link href="<c:url value="/resources/theme1/css/style.css" />" rel="stylesheet">
+
     <title>Rozkład jazdy</title>
 </head>
 <body>
