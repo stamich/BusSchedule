@@ -6,9 +6,11 @@ import java.util.HashSet;
 import java.util.Set;
 
 /**
+ * Prosta klasa (POJO) warstwy modelu reprezentująca przystanek autobusowy,
+ * jako model obiektu aplikacji.
+ * @author Michal Stawarski
  * Created by michal on 05.06.17.
  */
-
 @Entity
 @Table(name = "przystanek")
 public class Stop
@@ -37,6 +39,9 @@ public class Stop
     @JoinTable(name = "przystanek_linia", joinColumns = { @JoinColumn(name = "numer_przystanku") }, inverseJoinColumns = { @JoinColumn(name = "id_linii") })
     private Set<Line> lines = new HashSet<>();
 
+    /**
+     * Zestaw typowych metod get oraz set.
+     */
     public int getStopId() {
         return stopId;
     }

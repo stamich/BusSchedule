@@ -9,13 +9,11 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="spring" uri="http://www.springframework.org/tags" %>
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
+<!DOCTYPE html>
 <html>
-<head>
-    <link href="<c:url value="/resources/theme1/css/style.css" />" rel="stylesheet">
-
-    <title>Dodaj przystanek</title>
-</head>
-<body>
+<div id="content">
+    <span class="smalltitle">Tworzenie rekordu</span>
+    <div style="height: 5px;"></div>
     <c:url var="action" value='stopDetails' ></c:url>
 
     <form:form method="post" action="${action}" modelAttribute="stop">
@@ -23,10 +21,6 @@
             <tr>
                 <td><form:label path="stopId">Ulica :</form:label></td>
                 <td><form:input path="stopId" /></td>
-            </tr>
-            <tr>
-                <td><form:label path="street">Ulica :</form:label></td>
-                <td><form:input path="street" /></td>
             </tr>
             <tr>
                 <td><form:label path="stopName">Nazwa przystanku :</form:label></td>
@@ -49,5 +43,5 @@
             </tr>
         </table>
     </form:form>
-</body>
+</div>
 </html>

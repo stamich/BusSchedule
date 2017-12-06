@@ -12,15 +12,24 @@ import org.springframework.transaction.annotation.EnableTransactionManagement;
 import javax.sql.DataSource;
 import java.util.Properties;
 
+/**
+ * Klasa konfigurujaca framework Hibernate, ktory za pomoca
+ * sterownika JDBC zarzadza baza danych.
+ * @author Michal Stawarski
+ */
 @Configuration
 @EnableTransactionManagement
 @ComponentScan({ "pl.mzk.bielsko" })
-@PropertySource(value = { "classpath:application.properties" })
+@PropertySource(value = { "classpath:db.properties" })
 public class HibernateConfig {
 
     @Autowired
     private Environment environment;
 
+    /**
+     * Metoda konfigurujaca fabryke sesji Hibernate.
+     * @return sessionFactory
+     */
     @Bean
     public LocalSessionFactoryBean sessionFactory() {
         LocalSessionFactoryBean sessionFactory = new LocalSessionFactoryBean();
@@ -30,6 +39,10 @@ public class HibernateConfig {
         return sessionFactory;
     }
 
+    /**
+     * Metoda konfigurujaca zrodlo danych Hibernate.
+     * @return dataSource
+     */
     @Bean
     public DataSource dataSource() {
         DriverManagerDataSource dataSource = new DriverManagerDataSource();
@@ -40,6 +53,10 @@ public class HibernateConfig {
         return dataSource;
     }
 
+    /**
+     * Metoda konfigurujaca wlasciwosci frameworka Hibernate.
+     * @return properties
+     */
     private Properties hibernateProperties() {
         Properties properties = new Properties();
         properties.put("hibernate.dialect", environment.getRequiredProperty("hibernate.dialect"));
@@ -48,6 +65,11 @@ public class HibernateConfig {
         return properties;
     }
 
+    /**
+     * Metoda konfigurujaca menedzera transakcji bazodanowych.
+     * @param s
+     * @return txManager
+     */
     @Bean
     @Autowired
     public HibernateTransactionManager transactionManager(SessionFactory s) {

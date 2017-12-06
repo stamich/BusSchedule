@@ -8,21 +8,11 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <html>
-<head>
-    <link href="<c:url value="/resources/theme1/css/style.css" />" rel="stylesheet">
-
-    <title>Rozkład jazdy</title>
-</head>
-<body>
-<h1>Rozkład jazdy MZK</h1>
-<h1>Bielsko-Biała</h1>
-
-<h2>Wybierz sposób wyszukiwania:</h2>
-
-<h3>
-<a href=" <c:url value="lines" /> ">Linie</a>
-<a href=" <c:url value="stops" /> ">Przystanki</a>
-</h3>
-
-</body>
+<div id="content">
+    <div id="description">
+        <h1>Rozkład jazdy MZK</h1>
+        <h1>Bielsko-Biała</h1>
+        <h2>Witaj użytkowniku</h2>
+    </div>
+</div>
 </html>

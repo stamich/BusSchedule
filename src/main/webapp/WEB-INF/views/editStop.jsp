@@ -10,12 +10,6 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="spring" uri="http://www.springframework.org/tags" %>
 <html>
-<head>
-    <link href="<c:url value="/resources/theme1/css/style.css" />" rel="stylesheet">
-
-    <title>Edytuj przystanki</title>
-</head>
-<body>
     <spring:url value="stop" var="stop" />
 
     <a href="${stop}">Register</a>
@@ -53,5 +47,4 @@
             </tr>
         </table>
     </form:form>
-</body>
 </html>

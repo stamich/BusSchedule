@@ -10,12 +10,6 @@
 <%@ taglib prefix="spring" uri="http://www.springframework.org/tags" %>
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
 <html>
-<head>
-    <link href="<c:url value="/resources/theme1/css/style.css" />" rel="stylesheet">
-
-    <title>Edytuj linie</title>
-</head>
-<body>
 <spring:url value="lines" var="lines" />
 
 <a href="${lines}">Register</a>
@@ -51,6 +45,4 @@
         </tr>
     </table>
 </form:form>
-
-</body>
 </html>

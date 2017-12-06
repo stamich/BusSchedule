@@ -4,6 +4,10 @@ import pl.mzk.bielsko.model.Stop;
 
 import java.util.List;
 
+/**
+ * Interfejs warstwy danych deklarujacy metody modelu przystanku autobusowego.
+ * @author Michal Stawarski
+ */
 public interface StopDao {
 
     public void createStop(Stop stop);

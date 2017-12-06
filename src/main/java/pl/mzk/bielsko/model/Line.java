@@ -6,9 +6,11 @@ import java.util.HashSet;
 import java.util.Set;
 
 /**
+ * Prosta klasa (POJO) warstwy modelu reprezentująca linie autobusowa,
+ * jako model obiektu aplikacji.
+ * @author Michal Stawarski
  * Created by michal on 05.06.17.
  */
-
 @Entity
 @Table(name = "linia")
 public class Line
@@ -36,6 +38,9 @@ public class Line
     @ManyToMany(mappedBy = "lines")
     private Set<Stop> stops = new HashSet<>();
 
+    /**
+     * Zestaw typowych metod get oraz set.
+     */
     public int getLineId() {
         return lineId;
     }

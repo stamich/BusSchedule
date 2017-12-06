@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE tiles-definitions PUBLIC  "-//Apache Software Foundation//DTD Tiles Configuration 3.0//EN"  "http://tiles.apache.org/dtds/tiles-config_3_0.dtd">
+
+<tiles-definitions>
+
+    <!-- Base Definition -->
+    <definition name="base-definition" template="/WEB-INF/views/tiles/layouts/defaultLayout.jsp">
+        <put-attribute name="title" value="" />
+        <put-attribute name="header" value="/WEB-INF/views/tiles/templates/defaultHeader.jsp" />
+        <put-attribute name="menu" value="/WEB-INF/views/tiles/templates/defaultSidebar.jsp" />
+        <put-attribute name="body" value="" />
+        <put-attribute name="footer" value="/WEB-INF/views/tiles/templates/defaultFooter.jsp" />
+    </definition>
+
+    <!-- Index Page -->
+    <definition name="main" extends="base-definition">
+        <put-attribute name="title" value="Witamy" />
+        <put-attribute name="menu" value="/WEB-INF/views/tiles/templates/sidebarMain.jsp" />
+        <put-attribute name="body" value="/WEB-INF/views/main.jsp" />
+    </definition>
+
+    <!-- Lines Page -->
+    <definition name="lines" extends="base-definition">
+        <put-attribute name="title" value="Linie" />
+        <put-attribute name="menu" value="/WEB-INF/views/tiles/templates/sidebarLines.jsp" />
+        <put-attribute name="body" value="/WEB-INF/views/lines.jsp" />
+    </definition>
+
+    <!-- Create Line Page -->
+    <definition name="createLine" extends="base-definition">
+        <put-attribute name="title" value="Linie" />
+        <put-attribute name="menu" value="/WEB-INF/views/tiles/templates/sidebarLines.jsp" />
+        <put-attribute name="body" value="/WEB-INF/views/createLine.jsp" />
+    </definition>
+
+    <!-- Edit Line Page -->
+    <definition name="editLine" extends="base-definition">
+        <put-attribute name="title" value="Linie" />
+        <put-attribute name="menu" value="/WEB-INF/views/tiles/templates/sidebarLines.jsp" />
+        <put-attribute name="body" value="/WEB-INF/views/editLine.jsp" />
+    </definition>
+
+    <!-- Stops Page -->
+    <definition name="stops" extends="base-definition">
+        <put-attribute name="title" value="Przystanki" />
+        <put-attribute name="menu" value="/WEB-INF/views/tiles/templates/sidebarStops.jsp" />
+        <put-attribute name="body" value="/WEB-INF/views/stops.jsp" />
+    </definition>
+
+    <!-- Create Stop Page -->
+    <definition name="createStop" extends="base-definition">
+        <put-attribute name="title" value="Przystanki" />
+        <put-attribute name="menu" value="/WEB-INF/views/tiles/templates/sidebarStops.jsp" />
+        <put-attribute name="body" value="/WEB-INF/views/createStop.jsp" />
+    </definition>
+
+    <!-- Edit Stop Page -->
+    <definition name="editStop" extends="base-definition">
+        <put-attribute name="title" value="Przystanki" />
+        <put-attribute name="menu" value="/WEB-INF/views/tiles/templates/sidebarStops.jsp" />
+        <put-attribute name="body" value="/WEB-INF/views/editStop.jsp" />
+    </definition>
+
+    <!-- Description Page -->
+    <definition name="description" extends="base-definition">
+        <put-attribute name="title" value="Opis" />
+        <put-attribute name="menu" value="/WEB-INF/views/tiles/templates/sidebarDescription.jsp" />
+        <put-attribute name="body" value="/WEB-INF/views/description.jsp" />
+    </definition>
+
+</tiles-definitions>

@@ -4,6 +4,10 @@ import pl.mzk.bielsko.model.Line;
 
 import java.util.List;
 
+/**
+ * Interfejs warstwy uslug deklarujacy metody modelu linii autobusowej.
+ * @author Michal Stawarski
+ */
 public interface LineService {
 
     public void createLine(Line line);
