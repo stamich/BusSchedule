@@ -1,8 +1,0 @@
-<component name="ArtifactManager">
-  <artifact type="war" name="H11_Project:war">
-    <output-path>$PROJECT_DIR$/target</output-path>
-    <root id="archive" name="mzk_bielsko.war">
-      <element id="artifact" artifact-name="H11_Project:war exploded" />
-    </root>
-  </artifact>
-</component>
