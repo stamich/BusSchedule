@@ -5,7 +5,7 @@ The business logic:
 - Spring 4,
 - Hibernate 5,
 - MySQL 5.1 database.
-- TDD: jUnit, Mockito.
+- TDD: JUnit, Mockito.
 
 The frontend:
 - HTML5,

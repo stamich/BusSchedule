@@ -25,7 +25,7 @@ public class LineController {
      * @param map
      * @return
      */
-    @RequestMapping(value = "/lines", method = RequestMethod.GET)
+    @RequestMapping(value = "/linesList", method = RequestMethod.GET)
     public String linesList(Map<String,Object> map){
         map.put("lineList", lineService.getAllLines());
         return "lines";

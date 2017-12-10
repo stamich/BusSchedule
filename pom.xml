@@ -166,7 +166,7 @@
             <artifactId>tiles-servlet</artifactId>
             <version>${atiles.version}</version>
         </dependency>
-        
+
         <!-- Testing dependencies -->
         <!-- Spring Test -->
         <dependency>
