@@ -4,28 +4,16 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
-/**
- * Klasa warstwy prezentacji - prosty kontroler strony powitalnej aplikacji.
- * @author Michal Stawarski
- */
 @Controller
 public class MainController {
 
-    /**
-     * Metoda wyswietlajaca strone powitalna aplikacji.
-     * @return
-     */
-    @RequestMapping(value = "/", method = RequestMethod.GET)
+    @RequestMapping(value = "/", method = RequestMethod.GET, produces = "text/html; charset=utf-8")
     public String mainView(){
-        return "main";
+        return "index.html";
     }
 
-    /**
-     * Metoda wyświetlajaca strone o aplikacji.
-     * @return
-     */
-    @RequestMapping(value = "/description", method = RequestMethod.GET)
+    @RequestMapping(value = "/description", method = RequestMethod.GET, produces = "text/html; charset=utf-8")
     public String descriptionView(){
-        return "description";
+        return "description.html";
     }
 }

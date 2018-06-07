@@ -2,83 +2,69 @@ package pl.mzk.bielsko.dao;
 
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
+import org.hibernate.query.Query;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 import pl.mzk.bielsko.model.Line;
+import pl.mzk.bielsko.model.Stop;
 
 import java.util.List;
+import java.util.Set;
 
-/**
- * Klasa warstwy danych dla modelu linii autobusowej.
- * @author Michal Stawarski
- */
 @Repository("lineDao")
 public class LineDaoImpl implements LineDao {
 
     @Autowired
     private SessionFactory sessionFactory;
 
-    /**
-     * Metoda tworzaca biezaca sesje
-     * @return sessionFactory.getCurrentSession()
-     */
     protected Session currentSession(){
         return sessionFactory.getCurrentSession();
     }
 
-    /**
-     * Meroda tworzaca linie autobusowa.
-     * @param line
-     */
     @Override
-    public void createLine(Line line) {
+    public void saveLine(Line line) {
         currentSession().save(line);
     }
 
-    /**
-     * Metoda uaktualniajaca linie autobusowa.
-     * @param line
-     */
     @Override
-    public void updateLine(Line line) {
-        currentSession().update(line);
+    public void deleteLine(Integer lineId) {
+        String hqlQuery = "FROM Line AS l LEFT JOIN FETCH l.stops WHERE l.id.lineId="+lineId;
+        Query query = currentSession().createQuery(hqlQuery);
+        Line line = (Line) query.uniqueResult();
+        Set<Stop> stops = line.getStops();
+        currentSession().delete(line);
+
+        /*
+        for(Stop stop: stops){
+            currentSession().delete(stop);
+        }*/
+
+        stops.stream().forEach((stop) -> {currentSession().delete(stop);
+        });
     }
 
-    /**
-     * Metoda edytujaca linie autobusowa.
-     * @param lineId
-     * @return findLine(lineId)
-     */
     @Override
-    public Line editLine(int lineId) {
-        return findLine(lineId);
+    public void editLine(Line line) {
+        Line existingLine = currentSession().get(Line.class, line.getLineId());
+        existingLine.setLineNumber(line.getLineNumber());
+        existingLine.setRelationFrom(line.getRelationFrom());
+        existingLine.setRelationTo(line.getRelationTo());
+        existingLine.setValidFrom(line.getValidFrom());
+        existingLine.setValidTo(line.getValidTo());
+        existingLine.setActive(line.getActive());
+        existingLine.setComments(line.getComments());
+        currentSession().save(existingLine);
     }
 
-    /**
-     * Metoda usuwajaca linie autobusowa.
-     * @param lineId
-     */
     @Override
-    public void deleteLine(int lineId) {
-        currentSession().delete(lineId);
+    public Line findLineById(Integer lineId) {
+        String hqlQuery = "FROM Line AS l LEFT JOIN FETCH l.stops WHERE l.id.lineId="+lineId;
+        Query query = currentSession().createQuery(hqlQuery);
+        return (Line) query.uniqueResult();
     }
 
-    /**
-     * Metoda odnajdujaca linie autobusowa.
-     * @param lineId
-     * @return (Line)currentSession().get(Line.class, lineId)
-     */
     @Override
-    public Line findLine(int lineId) {
-        return (Line)currentSession().get(Line.class, lineId);
-    }
-
-    /**
-     * Metoda pobierajaca wszystkie linie autobusowe poprzez kolekcje List.
-     * @return currentSession().createQuery("from Line").list()
-     */
-    @Override
-    public List<Line> getAllLines() {
-        return currentSession().createQuery("from Line").list();
+    public List<Line> findAllLines() {
+        return currentSession().createQuery("FROM Line").list();
     }
 }

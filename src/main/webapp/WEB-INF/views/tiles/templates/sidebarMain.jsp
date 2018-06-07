@@ -9,7 +9,7 @@
 <!DOCTYPE html>
 <div id="sidebar">
     <nav>
-        <div class="optionL"><a href="${pageContext.request.contextPath}/lines">Linie</a></div>
+        <div class="optionL"><a href="${pageContext.request.contextPath}/linesList">Linie</a></div>
         <div class="optionL"><a href="${pageContext.request.contextPath}/stops">Przystanki</a></div>
         <div class="optionL"><a href="${pageContext.request.contextPath}/description">O aplikacji</a></div>
         <div style="clear:both;"></div>

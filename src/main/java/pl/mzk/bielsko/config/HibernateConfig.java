@@ -13,34 +13,33 @@ import javax.sql.DataSource;
 import java.util.Properties;
 
 /**
- * Klasa konfigurujaca framework Hibernate, ktory za pomoca
- * sterownika JDBC zarzadza baza danych.
+ * The class for configuration Hibernate connection to database.
  * @author Michal Stawarski
  */
 @Configuration
 @EnableTransactionManagement
 @ComponentScan({ "pl.mzk.bielsko" })
-@PropertySource(value = { "classpath:db.properties" })
+@PropertySource(value = { "classpath:oracle.properties" })
 public class HibernateConfig {
 
     @Autowired
     private Environment environment;
 
     /**
-     * Metoda konfigurujaca fabryke sesji Hibernate.
+     * This method configures Session Factory of Hibernate.
      * @return sessionFactory
      */
     @Bean
     public LocalSessionFactoryBean sessionFactory() {
         LocalSessionFactoryBean sessionFactory = new LocalSessionFactoryBean();
         sessionFactory.setDataSource(dataSource());
-        sessionFactory.setPackagesToScan(new String[] { "pl.mzk.bielsko.model" });
+        sessionFactory.setPackagesToScan(new String[] { "pl.mzk.bielsko" });
         sessionFactory.setHibernateProperties(hibernateProperties());
         return sessionFactory;
     }
 
     /**
-     * Metoda konfigurujaca zrodlo danych Hibernate.
+     * This method configures data source of Hibernate.
      * @return dataSource
      */
     @Bean
@@ -54,7 +53,7 @@ public class HibernateConfig {
     }
 
     /**
-     * Metoda konfigurujaca wlasciwosci frameworka Hibernate.
+     * This method configures Hibernate properties.
      * @return properties
      */
     private Properties hibernateProperties() {
@@ -62,11 +61,12 @@ public class HibernateConfig {
         properties.put("hibernate.dialect", environment.getRequiredProperty("hibernate.dialect"));
         properties.put("hibernate.show_sql", environment.getRequiredProperty("hibernate.show_sql"));
         properties.put("hibernate.format_sql", environment.getRequiredProperty("hibernate.format_sql"));
+        properties.put("hibernate.hbm2ddl.auto", environment.getRequiredProperty("hibernate.hbm2ddl.auto"));
         return properties;
     }
 
     /**
-     * Metoda konfigurujaca menedzera transakcji bazodanowych.
+     * This method configures transaction manager.
      * @param s
      * @return txManager
      */

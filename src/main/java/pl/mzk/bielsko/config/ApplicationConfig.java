@@ -1,5 +1,6 @@
 package pl.mzk.bielsko.config;
 
+import org.springframework.context.ApplicationContext;
 import org.springframework.context.MessageSource;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
@@ -7,43 +8,43 @@ import org.springframework.context.annotation.Configuration;
 import org.springframework.context.support.ResourceBundleMessageSource;
 import org.springframework.validation.Validator;
 import org.springframework.validation.beanvalidation.LocalValidatorFactoryBean;
+import org.springframework.web.servlet.LocaleResolver;
 import org.springframework.web.servlet.ViewResolver;
-import org.springframework.web.servlet.config.annotation.EnableWebMvc;
-import org.springframework.web.servlet.config.annotation.ResourceHandlerRegistry;
-import org.springframework.web.servlet.config.annotation.ViewResolverRegistry;
-import org.springframework.web.servlet.config.annotation.WebMvcConfigurerAdapter;
+import org.springframework.web.servlet.config.annotation.*;
+import org.springframework.web.servlet.i18n.SessionLocaleResolver;
 import org.springframework.web.servlet.view.InternalResourceViewResolver;
 import org.springframework.web.servlet.view.JstlView;
 import org.springframework.web.servlet.view.tiles3.TilesConfigurer;
 import org.springframework.web.servlet.view.tiles3.TilesViewResolver;
+import org.thymeleaf.spring5.SpringTemplateEngine;
+import org.thymeleaf.spring5.templateresolver.SpringResourceTemplateResolver;
+import org.thymeleaf.spring5.view.ThymeleafViewResolver;
+import org.thymeleaf.templatemode.TemplateMode;
 
-/**
- * Klasa konfiguracji Beanow Springa.
- * @author Michal Stawarski
- */
+import java.util.Locale;
+
 @Configuration
 @EnableWebMvc
 @ComponentScan(basePackages = "pl.mzk.bielsko")
-public class ApplicationConfig extends WebMvcConfigurerAdapter {
+public class ApplicationConfig implements WebMvcConfigurer {
 
-    /**
-     * Metoda konfiguracji resolwera widokow Springa.
-     * @return viewResolver
-     */
+    private ApplicationContext applicationContext;
+
+    public void setApplicationContext(ApplicationContext applicationContext) {
+        this.applicationContext = applicationContext;
+    }
+
+    /*
     @Bean
     public ViewResolver viewResolver() {
         InternalResourceViewResolver viewResolver = new InternalResourceViewResolver();
         viewResolver.setViewClass(JstlView.class);
         viewResolver.setPrefix("/WEB-INF/views/");
         viewResolver.setSuffix(".jsp");
-
         return viewResolver;
     }
+    */
 
-    /**
-     * Metoda konfigracji modulu obslugujacego powiadomienia w widokach.
-     * @return messageSource
-     */
     @Bean
     public MessageSource messageSource() {
         ResourceBundleMessageSource messageSource = new ResourceBundleMessageSource();
@@ -51,20 +52,21 @@ public class ApplicationConfig extends WebMvcConfigurerAdapter {
         return messageSource;
     }
 
-    /**
-     * Metoda konfigracji(przeslaniajaca) mapowania zasobow dodatkowych takich jak pliki css czy tez js.
-     * @param registry
-     */
+    @Bean
+    public LocaleResolver localeResolver(){
+        SessionLocaleResolver localeResolver = new SessionLocaleResolver();
+        localeResolver.setDefaultLocale(Locale.ENGLISH);
+        return localeResolver;
+    }
+
     @Override
     public void addResourceHandlers(ResourceHandlerRegistry registry) {
         registry.addResourceHandler("/resources/theme1/css/**").addResourceLocations("/resources/theme1/css/");
         registry.addResourceHandler("/resources/theme1/js/**").addResourceLocations("/resources/theme1/js/");
+        registry.addResourceHandler("/resources/theme1/font/**").addResourceLocations("/resources/theme1/font/");
+        registry.addResourceHandler("/resources/theme1/img/**").addResourceLocations("/resources/theme1/img/");
     }
 
-    /**
-     * Metoda konfigracji(przeslaniajaca) walidatora.
-     * @return validator
-     */
     @Override
     public Validator getValidator() {
         LocalValidatorFactoryBean validator = new LocalValidatorFactoryBean();
@@ -72,10 +74,7 @@ public class ApplicationConfig extends WebMvcConfigurerAdapter {
         return validator;
     }
 
-    /**
-     * Metoda konfigracji frameworka Apache Tiles 3.
-     * @return tilesConfigurer
-     */
+    /*
     @Bean
     public TilesConfigurer tilesConfigurer(){
         TilesConfigurer tilesConfigurer = new TilesConfigurer();
@@ -84,13 +83,46 @@ public class ApplicationConfig extends WebMvcConfigurerAdapter {
         return tilesConfigurer;
     }
 
-    /**
-     * Metoda konfigurujaca(przeslaniajaca) resolwer widokow Apache Tiles 3.
-     * @param registry
-     */
     @Override
     public void configureViewResolvers(ViewResolverRegistry registry) {
         TilesViewResolver viewResolver = new TilesViewResolver();
         registry.viewResolver(viewResolver);
+    }
+    */
+
+    /**
+     * Configuration of Thymeleaf library
+     * @return
+     */
+    @Bean
+    public ThymeleafViewResolver viewResolver(){
+        ThymeleafViewResolver viewResolver = new ThymeleafViewResolver();
+        viewResolver.setTemplateEngine(templateEngine());
+        viewResolver.setCharacterEncoding("UTF-8");
+        viewResolver.setOrder(1);
+        viewResolver.setViewNames(new String[] {"*.html", "*.xhtml"});
+        return viewResolver;
+    }
+
+
+    @Bean
+    public SpringResourceTemplateResolver templateResolver(){
+        SpringResourceTemplateResolver templateResolver = new SpringResourceTemplateResolver();
+        templateResolver.setApplicationContext(this.applicationContext);
+        templateResolver.setPrefix("/WEB-INF/views/html/");
+        templateResolver.setSuffix(".html");
+        templateResolver.setTemplateMode(TemplateMode.HTML);
+        templateResolver.setCharacterEncoding("UTF-8");
+        templateResolver.setCacheable(false);
+        return templateResolver;
+    }
+
+
+    @Bean
+    public SpringTemplateEngine templateEngine(){
+        SpringTemplateEngine templateEngine = new SpringTemplateEngine();
+        templateEngine.setTemplateResolver(templateResolver());
+        templateEngine.setEnableSpringELCompiler(true);
+        return templateEngine;
     }
 }

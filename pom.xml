@@ -13,25 +13,59 @@
 
     <properties>
 
-        <spring.version>4.3.12.RELEASE</spring.version>
-        <hibernate.version>5.2.12.Final</hibernate.version>
-        <hibernate.validator>5.1.3.Final</hibernate.validator>
-        <javax.validation>1.1.0.Final</javax.validation>
+        <spring.version>5.0.6.RELEASE</spring.version>
+        <hibernate.version>5.2.17.Final</hibernate.version>
+        <hibernate.validator>6.0.9.Final</hibernate.validator>
+        <javax.validation>2.0.1.Final</javax.validation>
 
         <mysql.version>5.1.31</mysql.version>
+        <postgresql.version>42.2.2</postgresql.version>
+        <oracledb.version>12.2.0.1</oracledb.version>
         <c3p0.version>0.9.5.2</c3p0.version>
 
-        <javax.version>3.1.0</javax.version>
+        <javax.version>4.0.1</javax.version>
         <javax-api.version>2.3.1</javax-api.version>
         <jstl.version>1.2</jstl.version>
         <tld.version>1.1.2</tld.version>
 
         <atiles.version>3.0.8</atiles.version>
+        <thymeleaf.version>3.0.9.RELEASE</thymeleaf.version>
 
         <junit.version>4.12</junit.version>
         <testng.version>6.9.4</testng.version>
-        <mockito.version>1.10.19</mockito.version>
+        <mockito.version>2.18.3</mockito.version>
     </properties>
+
+    <repositories>
+        <repository>
+            <id>spring-repo</id>
+            <name>Spring Repository</name>
+            <url>http://repo.spring.io/plugins-release/</url>
+        </repository>
+
+        <repository>
+            <id>maven.oracle.com</id>
+            <name>oracle-maven-repo</name>
+            <url>https://maven.oracle.com</url>
+            <layout>default</layout>
+            <releases>
+                <enabled>true</enabled>
+                <updatePolicy>always</updatePolicy>
+            </releases>
+        </repository>
+    </repositories>
+    <pluginRepositories>
+        <pluginRepository>
+            <id>maven.oracle.com</id>
+            <name>oracle-maven-repo</name>
+            <url>https://maven.oracle.com</url>
+            <layout>default</layout>
+            <releases>
+                <enabled>true</enabled>
+                <updatePolicy>always</updatePolicy>
+            </releases>
+        </pluginRepository>
+    </pluginRepositories>
 
     <dependencies>
 
@@ -86,6 +120,12 @@
             <version>${hibernate.version}</version>
         </dependency>
 
+        <dependency>
+            <groupId>org.hibernate</groupId>
+            <artifactId>hibernate-java8</artifactId>
+            <version>${hibernate.version}</version>
+        </dependency>
+
         <!-- JSR303 validation -->
         <!-- Javax Validation -->
         <dependency>
@@ -121,6 +161,20 @@
             <groupId>mysql</groupId>
             <artifactId>mysql-connector-java</artifactId>
             <version>${mysql.version}</version>
+        </dependency>
+
+        <!-- PostgreSQL  -->
+        <dependency>
+            <groupId>org.postgresql</groupId>
+            <artifactId>postgresql</artifactId>
+            <version>${postgresql.version}</version>
+        </dependency>
+
+        <!-- Oracle Database 12c-->
+        <dependency>
+            <groupId>com.oracle.jdbc</groupId>
+            <artifactId>ojdbc8</artifactId>
+            <version>${oracledb.version}</version>
         </dependency>
 
         <!-- Servlet+JSP+JSTL -->
@@ -167,6 +221,19 @@
             <version>${atiles.version}</version>
         </dependency>
 
+        <!-- Thymeleaf dependencies-->
+        <dependency>
+            <groupId>org.thymeleaf</groupId>
+            <artifactId>thymeleaf</artifactId>
+            <version>${thymeleaf.version}</version>
+        </dependency>
+
+        <dependency>
+            <groupId>org.thymeleaf</groupId>
+            <artifactId>thymeleaf-spring5</artifactId>
+            <version>${thymeleaf.version}</version>
+        </dependency>
+
         <!-- Testing dependencies -->
         <!-- Spring Test -->
         <dependency>
@@ -184,7 +251,7 @@
             <scope>test</scope>
         </dependency>
 
-        <!-- jUnit-->
+        <!-- JUnit-->
         <dependency>
             <groupId>junit</groupId>
             <artifactId>junit</artifactId>

@@ -1,3 +1,5 @@
+package pl.mzk.bielsko.controller;
+
 import org.junit.Test;
 import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.web.servlet.view.InternalResourceView;

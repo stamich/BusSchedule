@@ -8,70 +8,34 @@ import pl.mzk.bielsko.model.Stop;
 
 import java.util.List;
 
-/**
- * Klasa warstwy uslug dla modelu przystanku autobusowego.
- * @author Michal Stawarski
- */
-@Service("stopService")
 @Transactional
+@Service("stopService")
 public class StopServiceImpl implements StopService {
 
     @Autowired
     private StopDao stopDao;
 
-    /**
-     * Meroda tworzaca przystanek autobusowy.
-     * @param stop
-     */
-    @Override
-    public void createStop(Stop stop) {
-        stopDao.createStop(stop);
+    public void saveStop(Integer lineId, Stop stop) {
+        stopDao.saveStop(lineId, stop);
     }
 
-    /**
-     * Metoda uaktualniajaca przystanek autobusowy.
-     * @param stop
-     */
-    @Override
-    public void updateStop(Stop stop) {
-        stopDao.updateStop(stop);
+    public void editStop(Stop stop) {
+        stopDao.editStop(stop);
     }
 
-    /**
-     * Metoda edytujaca przystanek autobusowy.
-     * @param stopId
-     * @return stopDao.editStop(stopId)
-     */
-    @Override
-    public Stop editStop(int stopId) {
-        return stopDao.editStop(stopId);
-    }
-
-    /**
-     * Metoda usuwajaca przystanek autobusowy.
-     * @param stopId
-     */
-    @Override
-    public void deleteStop(int stopId) {
+    public void deleteStop(Integer stopId) {
         stopDao.deleteStop(stopId);
     }
 
-    /**
-     * Metoda odnajdujaca przystanek autobusowy.
-     * @param stopId
-     * @return stopDao.findStop(stopId)
-     */
-    @Override
-    public Stop findStop(int stopId) {
+    public Stop findStop(Integer stopId) {
         return stopDao.findStop(stopId);
     }
 
-    /**
-     * Metoda pobierajaca wszystkie przystanki autobusowe poprzez kolekcje List.
-     * @return stopDao.getAllStops()
-     */
-    @Override
-    public List<Stop> getAllStops() {
-        return stopDao.getAllStops();
+    public List<Stop> findAllStops() {
+        return stopDao.findAllStops();
+    }
+
+    public List<Stop> findAllStops(Integer lineId) {
+        return stopDao.findAllStops(lineId);
     }
 }

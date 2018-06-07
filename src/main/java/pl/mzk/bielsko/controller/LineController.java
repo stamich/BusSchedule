@@ -1,111 +1,107 @@
 package pl.mzk.bielsko.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.MessageSource;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
+import pl.mzk.bielsko.dto.LineDTO;
+import pl.mzk.bielsko.dto.StopDTO;
 import pl.mzk.bielsko.model.Line;
-import pl.mzk.bielsko.service.LineService;
+import pl.mzk.bielsko.model.Stop;
+import pl.mzk.bielsko.service.*;
 
-import java.util.Map;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Locale;
 
-/**
- * Klasa warstwy prezentacji - kontroler widoku linii autobusowych.
- * @author Michal Stawarski
- */
 @Controller
+@RequestMapping(value = "/lines")
 public class LineController {
 
     @Autowired
     private LineService lineService;
 
-    /**
-     * Metoda listujaca linie autobusowe znajdujace sie w bazie danych.
-     * @param map
-     * @return
-     */
-    @RequestMapping(value = "/linesList", method = RequestMethod.GET)
-    public String linesList(Map<String,Object> map){
-        map.put("lineList", lineService.getAllLines());
-        return "lines";
+    @Autowired
+    private StopService stopService;
+
+    @Autowired
+    private MessageSource messageSource;
+
+    @RequestMapping(value = "/all", method = RequestMethod.GET, produces = "text/html; charset=utf-8")
+    public String getAllData(ModelMap modelMap){
+        List<Line> lines = lineService.findAllLines();
+        List<LineDTO> linesDTO = new ArrayList<LineDTO>();
+        for(Line line: lines){
+            LineDTO lineDTO = new LineDTO();
+            lineDTO.setLineId(line.getLineId());
+            lineDTO.setLineNumber(line.getLineNumber());
+            lineDTO.setRelationFrom(line.getRelationFrom());
+            lineDTO.setRelationTo(line.getRelationTo());
+            lineDTO.setValidFrom(line.getValidFrom());
+            lineDTO.setValidTo(line.getValidTo());
+            lineDTO.setActive(line.getActive());
+            lineDTO.setComments(line.getComments());
+            lineDTO.setStops(stopService.findAllStops(line.getLineId()));
+            linesDTO.add(lineDTO);
+        }
+
+        /*
+        lines.stream().forEach((line) -> {
+            LineDTO lineDTO = new LineDTO();
+        lineDTO.setLineId(line.getLineId());
+        lineDTO.setLineNumber(line.getLineNumber());
+        lineDTO.setRelationFrom(line.getRelationFrom());
+        lineDTO.setRelationTo(line.getRelationTo());
+        lineDTO.setValidFrom(line.getValidFrom());
+        lineDTO.setValidTo(line.getValidTo());
+        lineDTO.setActive(line.getActive());
+        lineDTO.setComments(line.getComments());
+        lineDTO.setStops(stopService.findAllStops(line.getLineId()));
+        linesDTO.add(lineDTO);
+        });*/
+
+        modelMap.addAttribute("lines", linesDTO);
+        return "allLines.html";
     }
 
-    /**
-     * Metoda pozwalajaca na edycje danych konkretnej linii autobusowej.
-     * @param lineId
-     * @param map
-     * @return
-     */
-    @RequestMapping(value = "/editLine/{id}", method = RequestMethod.GET)
-    public String edit(@PathVariable("id") int lineId, Map<String,Object> map){
-        Line line = lineService.findLine(lineId);
-        map.put("line", line);
-        return "editLine";
+    @RequestMapping(value = "/new", method = RequestMethod.GET, produces = "text/html; charset=utf-8")
+    public String newLine(ModelMap modelMap){
+        Line line = new Line();
+        modelMap.addAttribute("line", line);
+        return "addLine.html";
     }
 
-    /**
-     * Metoda pozwalajaca dokonac uaktualnienia danych konkretnej linii autobusowej.
-     * @param line
-     * @param map
-     * @return
-     */
-    @RequestMapping(value = "/updateLine", method = RequestMethod.POST)
-    public String update(Line line, Map<String,Object> map){
-        lineService.updateLine(line);
-        return "redirect:lineDetails" + line.getLineId(); //zabezpiecza przed podwojnym kliknieciem
+    @RequestMapping(value = "/new", method = RequestMethod.POST, produces = "text/html; charset=utf-8")
+    public String saveNewLine(ModelMap modelMap, Line line){
+
+        lineService.saveLine(line);
+        modelMap.addAttribute("lineSaved", messageSource.getMessage("line.data.saved",
+                new Integer[]{line.getLineId()}, Locale.getDefault()));
+        return "success.html";
     }
 
-    /**
-     * Metoda pozwalajaca usunac konkretna linie autobusowa.
-     * @param lineId
-     * @param map
-     * @return
-     */
-    @RequestMapping(value = "/deleteLine/{lineId}", method = RequestMethod.GET)
-    public String delete(@PathVariable("lineId") int lineId, Map<String,Object> map){
+    @RequestMapping(value = "/delete", method = RequestMethod.GET, produces = "text/html; charset=utf-8")
+    public String deleteLine(@RequestParam ("id") Integer lineId){
         lineService.deleteLine(lineId);
-        return "redirect:lines";
+        return "redirect:/lines/all";
     }
 
-    /**
-     * Metoda umozliwiajaca tworzenie nowych linii autobusowych (REST - GET).
-     * @param map
-     * @return
-     */
-    @RequestMapping(value = "/createLine", method = RequestMethod.GET)
-    public String register(Map<String,Object> map){
-        map.put("line", new Line());
-        return "createLine";
+    @RequestMapping(value = "/edit", method = RequestMethod.GET, produces = "text/html; charset=utf-8")
+    public String editLine(@RequestParam ("id") Integer lineId, ModelMap modelMap){
+        Line existingLine = lineService.findLineById(lineId);
+        modelMap.addAttribute("existingLine", existingLine);
+        return "editLine.html";
     }
 
-    /**
-     * Metoda umozliwiajaca tworzenie nowych linii autobusowych (REST - POST).
-     * @param line
-     * @param map
-     * @return
-     */
-    @RequestMapping(value = "/createLine", method = RequestMethod.POST)
-    public String create(Line line, Map<String,Object> map){
-        lineService.createLine(line);
-        return "redirect:lineDetails" + line.getLineId(); //zabezpiecza przed podwojnym kliknieciem
-    }
-
-    /**
-     * Metoda wyswietlajaca szczegoly linii autobusowych.
-     * @param lineId
-     * @param map
-     * @return
-     */
-    @RequestMapping(value = "/details/{lineId}", method = RequestMethod.GET)
-    public String details(@PathVariable("lineId") int lineId, Map<String,Object> map){
-        Line line = lineService.findLine(lineId);
-        map.put("lineId", line.getLineId());
-        map.put("lineNumber", line.getLineNumber());
-        map.put("relation", line.getRelation());
-        map.put("direction", line.getDirection());
-        map.put("validFrom", line.getValidFrom());
-        map.put("validTo", line.getValidTo());
-        return "lineDetails";
+    @RequestMapping(value = "/edit", method = RequestMethod.POST, produces = "text/html; charset=utf-8")
+    public String saveEditedLine(@RequestParam ("id") Integer lineId, ModelMap modelMap, Line line){
+        modelMap.addAttribute("existingLine", line);
+        line.setLineId(lineId);
+        lineService.editLine(line);
+        return "success.html";
     }
 }

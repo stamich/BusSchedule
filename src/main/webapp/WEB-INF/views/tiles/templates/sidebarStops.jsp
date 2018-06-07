@@ -12,7 +12,7 @@
     <nav>
         <div class="optionL"><a href="${pageContext.request.contextPath}/">Strona główna</a></div>
         <div class="optionL"><a href="<c:url value='/createStop' />">Dodaj przyst.</a></div>
-        <div class="optionL"><a href="${pageContext.request.contextPath}/lines">Linie</a></div>
+        <div class="optionL"><a href="${pageContext.request.contextPath}/linesList">Linie</a></div>
         <div class="optionL"><a href="${pageContext.request.contextPath}/description">O aplikacji</a></div>
         <div style="clear:both;"></div>
     </nav>

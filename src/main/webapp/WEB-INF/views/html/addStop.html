@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="pl" xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <link rel="stylesheet" type="text/css" th:href="@{/resources/theme1/css/bootstrap.css}">
+
+    <link rel="stylesheet" type="text/css" th:href="@{/resources/theme1/css/app.css}">
+
+    <meta http-equiv="Content-Type" content="text/html"; charset="UTF-8">
+    <title>Dodaj przystanek</title>
+</head>
+<body>
+<div id="mainWrapper">
+    <header>
+        <h1 class="logo">Rozkład jazdy</h1>
+        <h2 class="logo">Dodawanie Przystanku</h2>
+    </header>
+
+    <form action="#" th:object="${stop}" th:action="@{/stops/new}" method="POST">
+        <p>Numer Linii: <input type="text" th:field="*{stopNumber}" name="lineNumber" /></p>
+        <p>Relacja z: <input type="text" th:field="*{departWorking}" name="departWorking" /></p>
+        <p>Relacja do<input type="text" th:field="*{departSaturdays}" name="departSaturdays" /></p>
+        <p>Ważny od<input type="text" th:field="*{departSundays}" name="departSundays" /></p>
+        <p>Uwagi<input type="text" th:field="*{comments}" name="comments" maxlength="50"/></p>
+        <br>
+        <input type="submit" value="Zapisz" />
+    </form>
+
+    <footer id="footer">
+        <h6>Version 1.2 &copy; Michał Stawarski Czerwiec 2018</h6>
+    </footer>
+
+</div>
+
+</body>
+</html>

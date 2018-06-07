@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="pl" xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <link rel="stylesheet" type="text/css" th:href="@{/resources/theme1/css/bootstrap.css}">
+
+    <link rel="stylesheet" type="text/css" th:href="@{/resources/theme1/css/app.css}">
+
+    <link rel="stylesheet" type="text/css" href="http://cdn.datatables.net/1.10.16/css/jquery.dataTables.min.css" />
+
+    <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script type="text/javascript" src="http://cdn.datatables.net/1.10.16/js/jquery.dataTables.min.js"></script>
+
+
+    <script type="text/javascript" >
+        $(document).ready(function (){
+            $('#table').DataTable({
+            });
+        });
+    </script>
+
+    <meta http-equiv="Content-Type" content="text/html"; charset="UTF-8">
+    <title>Przystanki</title>
+</head>
+<body>
+<div id="mainWrapper">
+
+    <header>
+        <h1 class="logo">Rozkład jazdy</h1>
+        <h2 class="logo">Przystanki</h2>
+    </header>
+
+    <div style="height: 5px;"></div>
+    <table id="table">
+        <thead>
+        <tr>
+            <th>Numer Przystanku</th>
+            <th>Numer Linii</th>
+            <th>Nazwa Przystanku</th>
+            <th>Ulica</th>
+            <th>Kierunek</th>
+            <th>Dni robocze</th>
+            <th>Soboty</th>
+            <th>Niedziele</th>
+
+        </tr>
+        </thead>
+
+        <tbody >
+        <th:block th:each="stop : ${stops}">
+            <th:block th:each="stopName : ${stop.stopNameDictionaries}" >
+                <th:block th:each="street : ${stop.streetDictionaries}" >
+                    <th:block th:each="direction : ${stop.directionDictionaries}" >
+                        <th:block th:each="stop : ${stops}">
+                            <tr>
+                                <td th:text="${stop.stopNumber}"></td>
+                                <td th:text="${stop.line.lineId}"></td>
+                                <td th:text="${stopName.stopName}"></td>
+                                <td th:text="${street.street}"></td>
+                                <td th:text="${direction.direction}"></td>
+                                <td th:text="${stop.departWorking}"></td>
+                                <td th:text="${stop.departSaturdays}"></td>
+                                <td th:text="${stop.departSundays}"></td>
+                            </tr>
+                        </th:block>
+                    </th:block>
+                </th:block>
+            </th:block>
+        </th:block>
+        </tbody>
+        <tfoot>
+        <tr>
+            <th>Numer Przystanku</th>
+            <th>Numer Linii</th>
+            <th>Nazwa Przystanku</th>
+            <th>Ulica</th>
+            <th>Kierunek</th>
+            <th>Dni robocze</th>
+            <th>Soboty</th>
+            <th>Niedziele</th>
+
+        </tr>
+        </tfoot>
+    </table>
+
+    <footer id="footer">
+        <h6>Version 1.2 &copy; Michał Stawarski Czerwiec 2018</h6>
+    </footer>
+
+</div>
+</body>
+</html>
